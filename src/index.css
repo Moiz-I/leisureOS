@@ -7,9 +7,46 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+:root {
+  --primary: #032541;
+  --secondary: #ff6868;
+  --white: rgb(255, 123, 123);
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
 }
 
 .search-container {
@@ -50,11 +87,15 @@ code {
   width: 100%;
 }
 
+.movie-button:disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
 .movie-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 30px;
-  background-color: blueviolet;
   padding: 10px;
 }
 
@@ -71,7 +112,6 @@ code {
   position: relative;
   border: 0;
   display: block;
-  background-color: aquamarine;
 }
 
 .movie-card img {
@@ -79,13 +119,62 @@ code {
   display: block;
 }
 
+.movie-card .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
+  box-shadow: rgba(149, 157, 165, 0.9) 0px 8px 24px;
+}
+
+.movie-card:hover .overlay {
+  border: 3px solid #b8c3d3;
+  box-shadow: rgba(149, 157, 165, 0.9) 0px 8px 24px;
+}
+
+.movie-card .inner-card-controls {
+  display: inline;
+  background-color: red;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 5px;
+  padding: 3px;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.movie-card:hover .inner-card-controls {
+  opacity: 1;
+}
+
+.ctrl-btn {
+  color: #fefefe;
+  background-color: transparent;
+  border: none;
+  transition: all 0.3s ease;
+  font-size: 1.35rem;
+  padding: 5px;
+  margin: 0;
+}
+
+.ctrl-btn:hover {
+  color: var(--secondary);
+  cursor: pointer;
+}
+
 .movie-page {
   padding: 30px 0;
-  background-color: blanchedalmond;
 }
 
 .add-movie-button {
   background-color: lightgray;
+  border: none;
 }
 
 .popup-content {

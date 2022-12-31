@@ -5,6 +5,17 @@ export default (state, action) => {
         ...state,
         watchlist: [action.payload, ...state.watchlist],
       };
+    case "REMOVE_MOVIE":
+      return {
+        ...state,
+        watchlist: state.watchlist.filter(
+          (movie) => movie[0] !== action.payload
+        ),
+      };
+    case "CHANGE_LINK":
+      return {
+        ...state,
+      };
     default:
       return state;
   }
