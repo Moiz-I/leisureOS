@@ -13,14 +13,42 @@ body {
   --white: rgb(255, 123, 123);
 }
 
+@font-face {
+  font-family: "Louize";
+  src: url("//db.onlinewebfonts.com/t/19738eb6c2753d885cda6a7c74f0631c.eot");
+  src: url("//db.onlinewebfonts.com/t/19738eb6c2753d885cda6a7c74f0631c.eot?#iefix")
+      format("embedded-opentype"),
+    url("//db.onlinewebfonts.com/t/19738eb6c2753d885cda6a7c74f0631c.woff2")
+      format("woff2"),
+    url("//db.onlinewebfonts.com/t/19738eb6c2753d885cda6a7c74f0631c.woff")
+      format("woff"),
+    url("//db.onlinewebfonts.com/t/19738eb6c2753d885cda6a7c74f0631c.ttf")
+      format("truetype"),
+    url("//db.onlinewebfonts.com/t/19738eb6c2753d885cda6a7c74f0631c.svg#Louize Display")
+      format("svg");
+}
+
+@font-face {
+  font-family: "Louize Bold";
+  src: url("//db.onlinewebfonts.com/t/164723bcff35c7bb2d00e41bf740a8de.eot");
+  src: url("//db.onlinewebfonts.com/t/164723bcff35c7bb2d00e41bf740a8de.eot?#iefix")
+      format("embedded-opentype"),
+    url("//db.onlinewebfonts.com/t/164723bcff35c7bb2d00e41bf740a8de.woff2")
+      format("woff2"),
+    url("//db.onlinewebfonts.com/t/164723bcff35c7bb2d00e41bf740a8de.woff")
+      format("woff"),
+    url("//db.onlinewebfonts.com/t/164723bcff35c7bb2d00e41bf740a8de.ttf")
+      format("truetype"),
+    url("//db.onlinewebfonts.com/t/164723bcff35c7bb2d00e41bf740a8de.svg#Louize Display")
+      format("svg");
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
 .container {
-  padding-right: 15px;
-  padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
 }
@@ -49,28 +77,74 @@ code {
   box-sizing: border-box;
 }
 
+.popup-content {
+  margin: auto;
+  margin-left: 16rem;
+  margin-top: -3rem;
+  border-radius: 20px;
+  width: 100%;
+  padding: 5px;
+  backdrop-filter: blur(20px);
+  max-width: 600px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.popup-arrow {
+  color: transparent;
+}
+
+.popup-overlay {
+  background: rgba(79, 255, 93, 0.5);
+}
+[data-popup="tooltip"].popup-overlay {
+  background: rgb(196, 137, 255, 0.5);
+  backdrop-filter: blur(1px);
+}
+
 .search-container {
-  background-color: beige;
+  border-radius: 20px;
   width: 100%;
   /*height: 250px;*/
+  padding: 20px 10px 10px;
+}
+
+.search {
+  width: 100%;
+}
+
+.input {
+  font: 400 70px / 84px "Louize";
+  -webkit-appearance: none;
+  appearance: none;
+  border: 0;
+  background: transparent;
+  outline: none;
+  color: #1f1f1f;
 }
 
 .results {
   /*height: 200px;
   overflow: auto;*/
   overflow-y: scroll;
-  height: 300px;
+  max-height: 430px;
+  border-radius: 5px;
+  border: 3px solid rgb(227, 190, 248);
 }
 
 .results img {
   width: 50px;
   display: flex;
   flex-direction: column;
+  border-radius: 3px;
+  border: 2px solid white;
 }
 
 .results p {
   display: flex;
   flex-direction: column;
+  padding-left: 10px;
+  font: 600 20px / 30px "Louize Bold";
+  /* font-style: italic; */
+  color: rgb(107, 107, 107);
 }
 
 .movie-details {
@@ -78,18 +152,28 @@ code {
   align-items: center;
   justify-content: start;
   z-index: 1;
+  background-color: rgba(199, 199, 199, 0.6);
+  border-radius: 5px;
+  padding: 5px;
+  /* border: 1px solid rgb(193, 59, 255); */
 }
 
 .movie-button {
-  background-color: aquamarine;
   z-index: 1000;
   display: block;
   width: 100%;
+  border: none;
+  padding: 5px;
+  background-color: white;
 }
 
 .movie-button:disabled {
   pointer-events: none;
   opacity: 0.5;
+}
+
+.movie-page {
+  padding: 30px 0;
 }
 
 .movie-grid {
@@ -112,6 +196,12 @@ code {
   position: relative;
   border: 0;
   display: block;
+  /* min-height: 17.5rem; */
+  aspect-ratio: 1 / 1.4047;
+}
+
+.movie-card:hover {
+  box-shadow: 10px 10px 30px #babfc2;
 }
 
 .movie-card img {
@@ -131,8 +221,15 @@ code {
 }
 
 .movie-card:hover .overlay {
-  border: 3px solid #b8c3d3;
-  box-shadow: rgba(149, 157, 165, 0.9) 0px 8px 24px;
+  transition: all 0.2s ease;
+}
+
+.movie-card:hover img {
+  opacity: 80%;
+}
+
+.movie-card:hover {
+  border: 1px solid #b8c3d3;
 }
 
 .movie-card .inner-card-controls {
@@ -168,36 +265,81 @@ code {
   cursor: pointer;
 }
 
-.movie-page {
-  padding: 30px 0;
-}
-
 .add-movie-button {
   background-color: lightgray;
   border: none;
 }
 
-.popup-content {
-  margin: auto;
-  background: rgb(255, 0, 0);
+.add-movie-button p {
+  font-size: 90px;
+  color: #757575;
+  background-color: #cacacf;
+  margin-left: 40px;
+  margin-right: 40px;
+  border-radius: 200px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.add-movie-button:hover {
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: rgba(210, 233, 255, 0.9) 0px 8px 24px;
+}
+
+.search-bar {
+  padding: 20px 10px 10px;
+  display: flex;
+  flex-flow: row;
   width: 100%;
-  padding: 5px;
-  width: 600px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
-.popup-arrow {
-  color: transparent;
+  box-sizing: border-box;
+  overflow: hidden;
+  margin-bottom: 10px;
 }
 
-.popup-overlay {
-  background: rgba(79, 255, 93, 0.5);
-}
-[data-popup="tooltip"].popup-overlay {
-  background: rgb(196, 137, 255, 0.5);
-  backdrop-filter: blur(1px);
+.inner {
+  width: 100%;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #d0d7e2;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  position: relative;
 }
 
-.test {
-  height: 600px;
-  width: 600px;
+.inner::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.3);
+  transition: transform 1s ease, opacity 0.3s ease;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.search-input {
+  font: 400 70px / 84px "Louize";
+  -webkit-appearance: none;
+  appearance: none;
+  border: 0;
+  background: transparent;
+  outline: none;
+  letter-spacing: -0.03em;
+  flex-grow: 1;
+  width: 100px;
+  text-indent: 20px;
+  margin-left: -20px;
+  color: #757575;
+}
+
+::placeholder {
+  color: #c0c7d0;
+}
+
+.input::placeholder {
+  color: #dac6da;
+  opacity: 0.7;
 }

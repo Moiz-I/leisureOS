@@ -8,29 +8,15 @@ export const ResultCard = ({ movie }) => {
   const isAdded = (id) => {
     let storedMovie = watchlist.find((o) => o[0] === id);
     const alreadyAdded = storedMovie ? true : false;
-    if (alreadyAdded == "true") {
-      console.log("truuuu");
-    }
-    console.log("test");
+
     return alreadyAdded;
   };
   const imgSource = movie.show.image?.medium ? movie.show.image.medium : blank;
 
   const handleClick = (event) => {
-    // event.preventDefault();
-    // console.log(event.target.attributes.valuename);
-    // setSelectedName(event.target.attributes.valuename.value);
-    // setSelectedImg(event.target.attributes.valueimage.value);
-    // //console.log("selcted" + selectedName);
-    // //addStuff();
     const nameValue = event.target.attributes.valuename.value;
     const imgValue = event.target.attributes.valueimage.value;
     const idValue = event.target.attributes.valueid.value;
-    console.log("watchlist: ", watchlist);
-    console.log("name: ", nameValue);
-    console.log("id: ", idValue);
-    console.log("isAdded:", isAdded(idValue));
-    console.log("type: ", typeof isAdded(idValue));
     if (isAdded(idValue) == false) {
       let link = prompt("enter link: ");
       if (!link.includes("https://")) {

@@ -11,7 +11,6 @@ export const MovieCard = ({ id, imgSource, name, link }) => {
     changeLink(id, newLink);
     let storedMovie = watchlist.find((o) => o[0] === id);
     watchlist[watchlist.indexOf(storedMovie)][3] = newLink;
-    console.log(watchlist);
   };
   return (
     <div className="movie-card">

@@ -27,7 +27,7 @@ export default function Search() {
       <div className="search">
         <input
           type="text"
-          placeholder={"Search a show"}
+          placeholder={"Search for a show"}
           className={"input"}
           onChange={(event) => setQuery(event.target.value)}
           value={query}

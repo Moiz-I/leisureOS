@@ -11,7 +11,6 @@ function App() {
   return (
     <GlobalProvider>
       <div className="App">
-        <p>hi</p>
         <MovieGrid />
       </div>
     </GlobalProvider>
