@@ -6,6 +6,9 @@ const initialState = {
   watchlist: localStorage.getItem("watchlist")
     ? JSON.parse(localStorage.getItem("watchlist"))
     : [],
+  selectedCountry: localStorage.getItem("selectedCountry")
+    ? JSON.parse(localStorage.getItem("selectedCountry"))
+    : [{ value: "en_GB", label: "🇬🇧UK" }],
 };
 
 // create context
@@ -17,11 +20,14 @@ export const GlobalProvider = (props) => {
 
   useEffect(() => {
     localStorage.setItem("watchlist", JSON.stringify(state.watchlist));
+    localStorage.setItem(
+      "selectedCountry",
+      JSON.stringify(state.selectedCountry)
+    );
   }, [state]);
 
   // actions
   const addMovieToWatchlist = (movie) => {
-    console.log("hi");
     dispatch({ type: "ADD_MOVIE_TO_WATCHLIST", payload: movie });
   };
 
@@ -32,14 +38,19 @@ export const GlobalProvider = (props) => {
   const changeLink = (id, newLink) => {
     dispatch({ type: "CHANGE_LINK", payload: id, newLink });
   };
+  const changeCountry = (option) => {
+    dispatch({ type: "CHANGE_COUNTRY", payload: option });
+  };
 
   return (
     <GlobalContext.Provider
       value={{
         watchlist: state.watchlist,
+        selectedCountry: state.selectedCountry,
         addMovieToWatchlist,
         removeMovie,
         changeLink,
+        changeCountry,
       }}
     >
       {props.children}

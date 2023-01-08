@@ -16,6 +16,11 @@ export default (state, action) => {
       return {
         ...state,
       };
+    case "CHANGE_COUNTRY":
+      return {
+        ...state,
+        selectedCountry: action.payload,
+      };
     default:
       return state;
   }

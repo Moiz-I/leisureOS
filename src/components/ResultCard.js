@@ -1,8 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { GlobalContext } from "../context/GlobalState";
 import blank from "../assets/blank.jpg";
 
-export const ResultCard = ({ movie }) => {
+export const ResultCard = (props) => {
+  const movie = props.movie;
   const { addMovieToWatchlist, watchlist } = useContext(GlobalContext);
 
   const isAdded = (id) => {
@@ -18,12 +19,17 @@ export const ResultCard = ({ movie }) => {
     const imgValue = event.target.attributes.valueimage.value;
     const idValue = event.target.attributes.valueid.value;
     if (isAdded(idValue) == false) {
-      let link = prompt("enter link: ");
-      if (!link.includes("https://")) {
-        link = "https://" + link;
-      }
-      const movie = [idValue, nameValue, imgValue, link];
-      addMovieToWatchlist(movie);
+      // let link = prompt("enter link: ");
+      // if (!link.includes("https://")) {
+      //   link = "https://" + link;
+      // }
+      const movie = [idValue, nameValue, imgValue];
+      console.log("the show selected: ", nameValue);
+      props.onSelectShow(movie);
+      props.closeModal();
+      // addMovieToWatchlist(movie);
+    } else {
+      alert("Already in your list!");
     }
   };
 
@@ -32,7 +38,6 @@ export const ResultCard = ({ movie }) => {
       type="button"
       className="movie-button"
       disabled={isAdded(movie.show.id)}
-      onClick={handleClick}
       valueid={movie.show.id}
       valuename={movie.show.name}
       valueimage={imgSource}
@@ -40,6 +45,7 @@ export const ResultCard = ({ movie }) => {
     >
       <div
         className="movie-details"
+        onClick={handleClick}
         valueid={movie.show.id}
         valuename={movie.show.name}
         valueimage={imgSource}
