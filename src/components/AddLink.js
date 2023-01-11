@@ -52,7 +52,7 @@ export const AddLink = ({ movie, closeModal, edit, locale }) => {
       var n = 1;
       try {
         var data = await axios.get(
-          "https://apis.justwatch.com/content/titles/" +
+          "/api/justwatch/content/titles/" +
             locale +
             '/popular?body={"page_size":' +
             n +
