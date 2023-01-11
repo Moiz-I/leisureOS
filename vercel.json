@@ -3,5 +3,6 @@
     {
       "source": "/api/justwatch/content/titles:path*",
       "destination": "https://apis.justwatch.com/content/titles/:path*"
-    },
+    }
+  ]
 }
