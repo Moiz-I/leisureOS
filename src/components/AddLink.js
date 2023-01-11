@@ -62,6 +62,8 @@ export const AddLink = ({ movie, closeModal, edit, locale }) => {
             type +
             '"]}'
         );
+        console.log("data: ", data);
+        console.log("data.data: ", data.data);
         var results = data.data;
         var offers = results.items[0].offers;
 
