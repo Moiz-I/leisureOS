@@ -60,8 +60,7 @@ export const AddLink = ({ movie, closeModal, edit, locale }) => {
             q.split(" ").join("+") +
             '","content_types":["' +
             type +
-            '"]}',
-          { headers: { "User-Agent": "Mozilla/5.0" } }
+            '"]}'
         );
         var results = data.data;
         var offers = results.items[0].offers;
