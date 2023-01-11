@@ -60,7 +60,8 @@ export const AddLink = ({ movie, closeModal, edit, locale }) => {
             q.split(" ").join("+") +
             '","content_types":["' +
             type +
-            '"]}'
+            '"]}',
+          { headers: { "User-Agent": "Mozilla/5.0" } }
         );
         var results = data.data;
         var offers = results.items[0].offers;
@@ -152,36 +153,36 @@ export const AddLink = ({ movie, closeModal, edit, locale }) => {
 
   //search(movie[1]);
   return (
-    <div>
+    <div className="links-container">
       <p>{movie[1]}</p>
-      <p>{link}</p>
+      {link != "" && <p>{link}</p>}
       {netflix != "" && (
-        <button onClick={addMovie} value={netflix}>
+        <button onClick={addMovie} value={netflix} className="netflix">
           netflix
         </button>
       )}
       {prime != "" && (
-        <button onClick={addMovie} value={prime}>
+        <button onClick={addMovie} value={prime} className="prime">
           prime
         </button>
       )}
       {disney != "" && (
-        <button onClick={addMovie} value={disney}>
+        <button onClick={addMovie} value={disney} className="disney">
           disney
         </button>
       )}
       {bbc != "" && (
-        <button onClick={addMovie} value={bbc}>
+        <button onClick={addMovie} value={bbc} className="bbc">
           bbc
         </button>
       )}
       {hbo != "" && (
-        <button onClick={addMovie} value={hbo}>
+        <button onClick={addMovie} value={hbo} className="hbo">
           hbo
         </button>
       )}
       {crunchyroll != "" && (
-        <button onClick={addMovie} value={crunchyroll}>
+        <button onClick={addMovie} value={crunchyroll} className="crunchyroll">
           crunchyroll
         </button>
       )}
@@ -199,9 +200,10 @@ export const AddLink = ({ movie, closeModal, edit, locale }) => {
               placeholder={"enter your own link"}
               value={customLink}
               onChange={(e) => setCustomLink(e.target.value)}
+              className="enter-link"
             />
           </label>
-          <input type="submit" />
+          <input type="submit" className="submit-link" value={"✓"} />
         </form>
       </div>
     </div>

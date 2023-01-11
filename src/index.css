@@ -377,3 +377,77 @@ code {
 a:link {
   text-decoration: none;
 }
+
+.links-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.links-container > button {
+  border: none;
+  width: 120px;
+  height: 50px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: large;
+  margin: 20px;
+}
+
+.links-container > p {
+  font-weight: 600;
+  font-size: x-large;
+  margin-bottom: 10px;
+  margin-top: -5px;
+}
+
+.enter-link {
+  -webkit-appearance: none;
+  appearance: none;
+  border: 1px solid lightgray;
+  background: transparent;
+  outline: none;
+  color: #1f1f1f;
+  padding: 5px;
+  border-radius: 3px;
+}
+
+.submit-link {
+  -webkit-appearance: none;
+  appearance: none;
+  border: 1px solid lightgray;
+  background: lightgreen;
+  outline: none;
+  color: #1f1f1f;
+  padding: 5px;
+  width: 35 px;
+}
+
+.links-container > button:hover {
+  border: none;
+  width: 120px;
+  height: 50px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: large;
+  border: 3px solid gainsboro;
+  opacity: 70%;
+}
+
+.netflix {
+  background-color: lightcoral;
+  color: white;
+}
+
+.prime {
+  background-color: lightblue;
+}
+
+.disney {
+  background-color: rgb(41, 41, 151);
+  color: white;
+}
+
+.crunchyroll {
+  background-color: orange;
+}
